@@ -10,10 +10,20 @@ class GitCommand {
     }
 
     //Command: git status
-    status(){        
-        /*
-            Create logic here and run unit testing.
-        */
+    status(){     
+        let modified_files = this.working_directory.new_changes;
+        let message;
+        let changeCount = Object.keys(modified_files).length;
+
+        if(changeCount==0) {
+            message = message = 'You have 0 change/s.\n'
+        } else {
+            message = 'You have '+changeCount+' change/s.'
+            for(let i=0;i<changeCount;i++) {
+                message = message+"\n"+Object.keys(modified_files)[i];
+            }
+        }
+        return message;
     }
 
     //Command: git add <filename/file directory/wildcard> 
